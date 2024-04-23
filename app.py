@@ -7,7 +7,7 @@ from langchain_community.embeddings import OllamaEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 
-from langchain.llms import ollama
+from langchain_community.llms import Ollama
 from langchain.callbacks import get_openai_callback
 
 
