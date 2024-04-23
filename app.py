@@ -2,11 +2,9 @@ from dotenv import load_dotenv
 import streamlit as st
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-
-from langchain_community.embeddings import OllamaEmbeddings
+from langchain.embeddings.ollama import OllamaEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
-
 from langchain_community.llms import Ollama
 from langchain.callbacks import get_openai_callback
 
@@ -45,7 +43,7 @@ def main():
       if user_question:
         docs = knowledge_base.similarity_search(user_question)
         
-        llm = Ollama(model="llama2")
+        llm = Ollama(model="llama2") 
         chain = load_qa_chain(llm, chain_type="stuff")
         with get_openai_callback() as cb:
           response = chain.run(input_documents=docs, question=user_question)
